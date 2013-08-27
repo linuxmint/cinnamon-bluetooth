@@ -57,6 +57,7 @@ Depends: ${misc:Depends},
          cinnamon-settings-daemon,
          cinnamon-translations,
          gnome-bluetooth
+Replaces: cinnamon-common
 Description: Gnome Bluetooth support for the Cinnamon desktop
  This package contains a configuration module and an applet compatible with GNOME Bluetooth.
 
