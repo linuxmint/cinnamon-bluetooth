@@ -1,0 +1,6 @@
+# Add files with translateable strings here.
+# Please keep this file sorted alphabetically.
+[encoding: UTF-8]
+panels/bluetooth/bluetooth-properties.desktop.in.in
+[type: gettext/glade]panels/bluetooth/bluetooth.ui
+panels/bluetooth/cc-bluetooth-panel.c

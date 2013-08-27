@@ -1,0 +1,6 @@
+cinnamon-bluetooth (1.8.2) olivia; urgency=low
+
+  * Split cinnamon bluetooth from cinnamon-control-center
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 27 Aug 2013 17:34:52 +0100
+
