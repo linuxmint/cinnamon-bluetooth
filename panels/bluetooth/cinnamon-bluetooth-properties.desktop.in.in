@@ -1,5 +1,5 @@
 [Desktop Entry]
-Icon=cinnamon-bluetooth
+Icon=bluetooth
 Exec=cinnamon-settings bluetooth
 Terminal=false
 Type=Application
