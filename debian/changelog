@@ -1,3 +1,9 @@
+cinnamon-bluetooth (3.8.3) qiana; urgency=medium
+
+  * 3.8.3
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 12 Apr 2014 13:30:15 +0100
+
 cinnamon-bluetooth (3.8.2) petra; urgency=low
 
   * 3.8.2
