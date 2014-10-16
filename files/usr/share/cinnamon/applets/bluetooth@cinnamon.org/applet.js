@@ -202,11 +202,10 @@ MyApplet.prototype = {
     _init: function(metadata, orientation, panel_height) {        
         Applet.TextIconApplet.prototype._init.call(this, orientation, panel_height);
         
-        try {
+        try {                                
             this.metadata = metadata;
             Main.systrayManager.registerRole("bluetooth", metadata.uuid);
             Main.systrayManager.registerRole("bluetooth-manager", metadata.uuid);
-            
             this.menuManager = new PopupMenu.PopupMenuManager(this);
             this.menu = new Applet.AppletPopupMenu(this, orientation);
             this.menuManager.addMenu(this.menu);            
@@ -381,6 +380,7 @@ MyApplet.prototype = {
 
         // adopt the new device object
         item._device = device;
+        item._connected = device.connected
         device._item = item;
 
         // update properties
@@ -417,12 +417,13 @@ MyApplet.prototype = {
             item._connected = device.connected;
             item._connectedMenuitem = new PopupMenu.PopupSwitchMenuItem(_("Connection"), device.connected);
             item._connectedMenuitem.connect('toggled', Lang.bind(this, function() {
+                let menuitem = item._connectedMenuitem;
                 if (item._connected > ConnectionState.CONNECTED) {
                     // operation already in progress, revert
                     // (should not happen anyway)
                     menuitem.setToggleState(menuitem.state);
-                }
-                if (item._connected) {
+                } else
+                if (item._connected == ConnectionState.CONNECTED) {
                     item._connected = ConnectionState.DISCONNECTING;
                     menuitem.setStatus(_("disconnecting..."));
                     this._applet.disconnect_device(item._device.device_path, function(applet, success) {
@@ -435,12 +436,12 @@ MyApplet.prototype = {
                         }
                         menuitem.setStatus(null);
                     });
-                } else {
+                } else if (item._connected == ConnectionState.DISCONNECTED) {
                     item._connected = ConnectionState.CONNECTING;
                     menuitem.setStatus(_("connecting..."));
-                    this._applet.connect_device(item._device.device_path, function(applet, success) {
+                   this._applet.connect_device(item._device.device_path, function(applet, success) {
                         if (success) { // apply
-                            item._connected = ConnectionState.CONNECTED;
+                           item._connected = ConnectionState.CONNECTED;
                             menuitem.setToggleState(true);
                         } else { // revert
                             item._connected = ConnectionState.DISCONNECTED;
