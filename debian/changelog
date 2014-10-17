@@ -1,3 +1,12 @@
+cinnamon-bluetooth (3.8.5) qiana; urgency=medium
+
+  * Fixes the issue where connect toggle does not connect the device but simply slides across
+  * Updated desktop file
+  * Fixed l10n in desktop file
+  * Fixed links to other settings
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 17 Oct 2014 09:24:44 +0200
+
 cinnamon-bluetooth (3.8.4) qiana; urgency=medium
 
   * 3.8.4
