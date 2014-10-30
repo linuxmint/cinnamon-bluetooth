@@ -221,13 +221,16 @@ switch_connected_active_changed (GtkSwitch        *button,
 	if (bluetooth_chooser_get_selected_device_info (BLUETOOTH_CHOOSER (self->priv->chooser),
 							"proxy", &value) == FALSE) {
 		g_warning ("Could not get D-Bus proxy for selected device");
+		g_free (bdaddr);
 		return;
 	}
 	proxy = g_strdup (g_dbus_proxy_get_object_path (g_value_get_object (&value)));
 	g_value_unset (&value);
 
-	if (proxy == NULL)
+	if (proxy == NULL) {
+		g_free (bdaddr);
 		return;
+	}
 
 	data = g_new0 (ConnectData, 1);
 	data->bdaddr = bdaddr;
