@@ -1,3 +1,10 @@
+cinnamon-bluetooth (3.8.6) rebecca; urgency=medium
+
+  * don't leak memory
+  * Switched locale path to standard /usr/share/locale
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 31 Oct 2014 23:16:54 +0100
+
 cinnamon-bluetooth (3.8.5) qiana; urgency=medium
 
   * Fixes the issue where connect toggle does not connect the device but simply slides across
