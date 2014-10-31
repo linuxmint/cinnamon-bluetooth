@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 DOMAIN = "cinnamon-bluetooth"
-PATH = "/usr/share/cinnamon/locale"
+PATH = "/usr/share/locale"
 
 import os, gettext, sys
 sys.path.append('/usr/lib/linuxmint/common')
