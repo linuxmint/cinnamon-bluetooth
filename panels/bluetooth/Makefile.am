@@ -6,7 +6,7 @@ noinst_LTLIBRARIES = libbluetooth.la
 AM_CPPFLAGS = 						\
 	$(PANEL_CFLAGS)					\
 	$(BLUETOOTH_CFLAGS)				\
-	-DGNOMELOCALEDIR="\"$(datadir)/locale\""	\
+	-LOCALEDIR="\"$(datadir)/locale\""	\
 	$(NULL)
 
 BUILT_SOURCES =				\
@@ -27,8 +27,8 @@ cc-bluetooth-resources.h: bluetooth.gresource.xml $(resource_files)
 	$(AM_V_GEN) glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name cc_bluetooth $<
 
 desktopdir = $(datadir)/applications
-desktop_in_in_files = gnome-bluetooth-panel.desktop.in.in
-desktop_in_files = gnome-bluetooth-panel.desktop.in
+desktop_in_in_files = cinnamon-bluetooth-panel.desktop.in.in
+desktop_in_files = cinnamon-bluetooth-panel.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
