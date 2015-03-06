@@ -1,12 +1,14 @@
 # This is used in PANEL_CFLAGS
 cappletname = bluetooth
 
-noinst_LTLIBRARIES = libbluetooth.la
+ccpanelsdir = $(PANELS_DIR)
+ccpanels_LTLIBRARIES = libbluetooth.la
 
 AM_CPPFLAGS = 						\
 	$(PANEL_CFLAGS)					\
 	$(BLUETOOTH_CFLAGS)				\
 	-LOCALEDIR="\"$(datadir)/locale\""	\
+	-DPKGDATADIR="\"$(pkgdatadir)\""
 	$(NULL)
 
 BUILT_SOURCES =				\
@@ -19,6 +21,7 @@ libbluetooth_la_SOURCES =			\
 	cc-bluetooth-panel.h
 
 libbluetooth_la_LIBADD = $(PANEL_LIBS) $(BLUETOOTH_LIBS)
+libbluetooth_la_LDFLAGS = $(PANEL_LDFLAGS)
 
 resource_files = $(shell glib-compile-resources --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/bluetooth.gresource.xml)
 cc-bluetooth-resources.c: bluetooth.gresource.xml $(resource_files)

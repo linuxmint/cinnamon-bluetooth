@@ -280,3 +280,28 @@ cc_bluetooth_panel_init (CcBluetoothPanel *self)
 	g_signal_connect (G_OBJECT (WID ("switch_bluetooth")), "notify::active",
 			  G_CALLBACK (power_callback), self);
 }
+
+void
+cc_bluetooth_panel_register (GIOModule *module)
+{
+	cc_bluetooth_panel_register_type (G_TYPE_MODULE (module));
+	g_io_extension_point_implement (CC_SHELL_PANEL_EXTENSION_POINT,
+					CC_TYPE_BLUETOOTH_PANEL,
+					"bluetooth", 0);
+}
+
+/* GIO extension stuff */
+void
+g_io_module_load (GIOModule *module)
+{
+	bindtextdomain (GETTEXT_PACKAGE, "/usr/share/locale");
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+	/* register the panel */
+	cc_bluetooth_panel_register (module);
+}
+
+void
+g_io_module_unload (GIOModule *module)
+{
+}
