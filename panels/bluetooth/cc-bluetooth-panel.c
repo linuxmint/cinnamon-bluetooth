@@ -47,6 +47,8 @@ struct CcBluetoothPanelPrivate {
 	GtkWidget           *widget;
 	GCancellable        *cancellable;
 
+	GtkWidget           *main_box;	
+
 	/* Killswitch */
 	GtkWidget           *kill_switch_header;
 	GDBusProxy          *rfkill, *properties;
@@ -104,9 +106,10 @@ cc_bluetooth_panel_constructed (GObject *object)
 
 	/* add kill switch widgets  */
 	self->priv->kill_switch_header = g_object_ref (WID ("box_power"));
-	cc_shell_embed_widget_in_header (cc_panel_get_shell (CC_PANEL (self)),
-					 self->priv->kill_switch_header);
-	gtk_widget_show_all (self->priv->kill_switch_header);
+
+	gtk_box_pack_start (GTK_BOX (self->priv->main_box), GTK_WIDGET (self->priv->kill_switch_header), TRUE, TRUE, 0);
+
+	gtk_widget_show_all (GTK_WIDGET (self->priv->kill_switch_header));
 }
 
 static void
@@ -213,11 +216,11 @@ panel_changed (GtkWidget        *settings_widget,
 	CcShell *shell;
 	GError *error = NULL;
 
-	shell = cc_panel_get_shell (CC_PANEL (self));
-	if (cc_shell_set_active_panel_from_id (shell, panel, NULL, &error) == FALSE) {
-		g_warning ("Failed to activate '%s' panel: %s", panel, error->message);
-		g_error_free (error);
-	}
+	// shell = cc_panel_get_shell (CC_PANEL (self));
+	// if (cc_shell_set_active_panel_from_id (shell, panel, NULL, &error) == FALSE) {
+	// 	g_warning ("Failed to activate '%s' panel: %s", panel, error->message);
+	// 	g_error_free (error);
+	// }
 }
 
 static void
@@ -258,27 +261,31 @@ cc_bluetooth_panel_init (CcBluetoothPanel *self)
 								"org.freedesktop.DBus.Properties",
 								NULL, NULL);
 
+	self->priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+
 	self->priv->stack = gtk_stack_new ();
 	add_stack_page (self, _("Bluetooth is disabled"), BLUETOOTH_DISABLED_PAGE);
 	add_stack_page (self, _("No Bluetooth adapters found"), BLUETOOTH_NO_DEVICES_PAGE);
 	add_stack_page (self, _("Bluetooth is disabled by hardware switch"), BLUETOOTH_HW_DISABLED_PAGE);
 
 	self->priv->widget = bluetooth_settings_widget_new ();
-	g_signal_connect (G_OBJECT (self->priv->widget), "panel-changed",
-			  G_CALLBACK (panel_changed), self);
-	gtk_stack_add_named (GTK_STACK (self->priv->stack),
-			     self->priv->widget, BLUETOOTH_WORKING_PAGE);
+	// g_signal_connect (G_OBJECT (self->priv->widget), "panel-changed",
+	// 		  G_CALLBACK (panel_changed), self);
+	// // gtk_stack_add_named (GTK_STACK (self->priv->stack),
+	// 		     self->priv->widget, BLUETOOTH_WORKING_PAGE);
 	gtk_widget_show (self->priv->widget);
 	gtk_widget_show (self->priv->stack);
+	gtk_widget_show (self->priv->main_box);
 
-	gtk_container_add (GTK_CONTAINER (self), self->priv->stack);
+	gtk_box_pack_start (GTK_BOX (self->priv->main_box), GTK_WIDGET (self->priv->widget), TRUE, TRUE, 0);
+	gtk_container_add (GTK_CONTAINER (self), self->priv->main_box);
 
 	airplane_mode_changed (NULL, NULL, NULL, self);
-	g_signal_connect (self->priv->rfkill, "g-properties-changed",
-			  G_CALLBACK (airplane_mode_changed), self);
+	// g_signal_connect (self->priv->rfkill, "g-properties-changed",
+	// 		  G_CALLBACK (airplane_mode_changed), self);
 
-	g_signal_connect (G_OBJECT (WID ("switch_bluetooth")), "notify::active",
-			  G_CALLBACK (power_callback), self);
+	 g_signal_connect (G_OBJECT (WID ("switch_bluetooth")), "notify::active",
+	 		  G_CALLBACK (power_callback), self);
 }
 
 void
