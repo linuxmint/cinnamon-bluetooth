@@ -27,8 +27,8 @@ cc-bluetooth-resources.h: bluetooth.gresource.xml $(resource_files)
 	$(AM_V_GEN) glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name cc_bluetooth $<
 
 desktopdir = $(datadir)/applications
-desktop_in_in_files = cinnamon-bluetooth-panel.desktop.in.in
-desktop_in_files = cinnamon-bluetooth-panel.desktop.in
+desktop_in_in_files = cinnamon-bluetooth-properties.desktop.in.in
+desktop_in_files = cinnamon-bluetooth-properties.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
