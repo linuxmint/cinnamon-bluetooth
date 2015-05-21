@@ -1,3 +1,10 @@
+cinnamon-bluetooth (3.8.8) rafaela; urgency=medium
+
+  [ dalcde ]
+  * Pass instance id to Applet.applet
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 21 May 2015 11:11:25 +0200
+
 cinnamon-bluetooth (3.8.7) rebecca; urgency=medium
 
   * Fixed version in configure.ac

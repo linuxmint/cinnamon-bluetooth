@@ -1,5 +1,5 @@
-m4_define([cinnamon_bluetooth_version], 3.8.7)
-AC_INIT([cinnamon-bluetooth], 3.8.7, [http://github.com/linuxmint/cinnamon-bluetooth])
+m4_define([cinnamon_bluetooth_version], 3.8.8)
+AC_INIT([cinnamon-bluetooth], 3.8.8, [http://github.com/linuxmint/cinnamon-bluetooth])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
