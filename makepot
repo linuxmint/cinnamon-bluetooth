@@ -1,4 +1,4 @@
 #!/bin/bash
 intltool-extract --type=gettext/glade panels/*/*.ui
-xgettext --language=C --from-code=UTF-8 --keyword=_ --keyword=N_ --output=cinnamon-bluetooth.pot panels/*/*.c panels/*/*.ui.h generate_additional_files.py
+xgettext --language=C --from-code=UTF-8 --keyword=_ --keyword=N_ --keyword=NC_:1c,2 --output=cinnamon-bluetooth.pot panels/*/*.c panels/*/*.ui.h generate_additional_files.py files/usr/share/cinnamon/applets/bluetooth@cinnamon.org/*.js
 rm -f panels/*/*.ui.h
