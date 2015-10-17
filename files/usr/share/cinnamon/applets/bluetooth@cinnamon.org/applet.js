@@ -17,9 +17,16 @@ const ConnectionState = {
     CONNECTING: 3
 }
 
- if (!GnomeBluetooth.hasOwnProperty('KillswitchState')){
-     ABI=4;
+if (!GnomeBluetooth.hasOwnProperty('KillswitchState')){
+    ABI=4;
 }
+
+
+// Override Gettext localization
+const Gettext = imports.gettext;
+Gettext.bindtextdomain('cinnamon-bluetooth', '/usr/share/locale');
+Gettext.textdomain('cinnamon-bluetooth');
+const _ = Gettext.gettext;
 
 function Source() {
     this._init.apply(this, arguments);
