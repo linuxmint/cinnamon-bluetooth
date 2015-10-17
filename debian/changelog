@@ -1,3 +1,9 @@
+cinnamon-bluetooth (3.8.10) rosa; urgency=medium
+
+  * Updated menu files
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 17 Oct 2015 14:15:26 +0100
+
 cinnamon-bluetooth (3.8.9) rosa; urgency=medium
 
   * Fixed missing translations from makepot
