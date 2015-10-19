@@ -1,3 +1,9 @@
+cinnamon-bluetooth (3.8.11) rosa; urgency=medium
+
+  * l10n: Only apply cinnamon-bluetooth domain to local code
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 19 Oct 2015 09:37:14 +0100
+
 cinnamon-bluetooth (3.8.10) rosa; urgency=medium
 
   * Updated menu files
