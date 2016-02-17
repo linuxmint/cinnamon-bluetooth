@@ -55,7 +55,6 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
          cinnamon-control-center,
          cinnamon-settings-daemon,
-         cinnamon-translations,
          gnome-bluetooth
 Replaces: cinnamon-common, cinnamon-control-center
 Description: Gnome Bluetooth support for the Cinnamon desktop
